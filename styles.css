@@ -1,0 +1,171 @@
+:root {
+    --primary-color: #eadef2;
+    --secondary-color: #04121f;
+    --tertiary-color: #14222f;
+    --accent-color: #EEB7D2;
+    --team-1-color: #673378;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 450ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    background-color: var(--secondary-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .app-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .lists-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .list-container {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 35px;
+    background: var(--tertiary-color);
+    border-radius: 8px;
+    min-width: 345px;
+    min-height: 510px;
+  }
+  
+  .list-container.on-top {
+    opacity: .7;
+    outline: 3px dotted var(--primary-color);
+    transition: none;
+  }
+  
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 8px 16px;
+    padding-left: 20px;
+    cursor: move;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    color: var(--tertiary-color);
+    background-color: var(--accent-color);
+    font-weight: 500;
+    user-select: none;
+  }
+  
+  .list-item::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 10px;
+    border-radius: 100vh;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    left: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--team-1-color);
+  }
+  
+  .list-item.dragging {
+    opacity: .7;
+    outline: 3px dashed var(--primary-color);
+    transition: none;
+  }
+  .list-item.dragged {
+    cursor: auto;
+  }
+  
+  button {
+    /* reset button styles */
+    cursor: pointer;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    user-select: none;
+  }
+  
+  button:active {
+    transform: scale(.95);
+  }
+  
+  button.reset-button {
+    padding: 8px 28px;
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  button.reset-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+  }
+  
+  .icon-button {
+    border-radius: 50%;
+  }
+  
+  .message {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    outline: 3px dashed var(--team-1-color);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 100;
+    animation: pop 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  
+  .message.popout {
+    animation: popout 1000ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  @keyframes popout {
+    0% {
+      transform: translateX(-50%) scale(1);
+    }
+    50% {
+      transform: translateX(-50%) scale(1.1);
+    }
+    100% {
+      transform: translateX(-50%) scale(0);
+    }
+  }
+  
+  @keyframes pop {
+    0% {
+      transform: translateX(-50%) scale(0);
+    }
+    50% {
+      transform: translateX(-50%) scale(1.1);
+    }
+    100% {
+      transform: translateX(-50%) scale(1);
+    }
+  }
